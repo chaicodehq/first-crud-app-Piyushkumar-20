@@ -14,13 +14,12 @@ export async function connectDB(uri) {
   }
 
   try {
-
     await mongoose.connect(uri);
-
-    console.log("MongoDB connected");
+    console.log("MongoDB is connected");
     return mongoose.connection;
+
   } catch (error) {
-    console.error("MongoDB connection error:", error);
+    console.log("Connection Failed:", error);
     throw error;
   }
 }

@@ -4,7 +4,6 @@ import express from "express";
 import todoRoutes from "./routes/todo.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import { notFound } from "./middlewares/notFound.middleware.js";
-import { connectDB } from "./db/connect.js";
 
 /**
  * TODO: Create Express app
@@ -18,8 +17,6 @@ import { connectDB } from "./db/connect.js";
  * 7. Return app
  */
 export function createApp() {
-  // Your code here
-  // Do not connect to the database here; let server.js or test setup manage connections
   const app = express();
   app.use(express.json());
 
@@ -28,9 +25,10 @@ export function createApp() {
   });
 
   app.use("/api/todos", todoRoutes);
+
   app.use(notFound);
   app.use(errorHandler);
-  return app;
 
+  return app;
 }
 
